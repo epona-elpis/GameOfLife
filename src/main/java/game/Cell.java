@@ -3,8 +3,8 @@ package game;
 import java.util.Objects;
 
 class Cell {
-    private int row;
-    private int col;
+    private final int row;
+    private final int col;
     private boolean alive;
     private int livingNeighbours;
 
@@ -13,24 +13,13 @@ class Cell {
         this.col = col;
     }
 
-    int[] getPos() {
-        return new int[] {row,col};
-    }
-
-    int getRow() {
-        return row;
-    }
-
-    int getCol() {
-        return col;
-    }
-
     void incrementLivingNeighbour() {
         livingNeighbours +=1;
     }
 
-    void setAlive(boolean alive) {
+    Cell setAlive(boolean alive) {
         this.alive=alive;
+        return this;
     }
 
     boolean isAlive(){
@@ -41,6 +30,12 @@ class Cell {
         alive = aliveRule.isAlive(alive, livingNeighbours);
         livingNeighbours = 0;
         return this;
+    }
+
+    int[][] getNeighbouringBoardPositions() {
+        return new int[][]{{row - 1, col - 1}, {row - 1, col}, {row - 1, col + 1},
+                {row, col - 1}, {row, col + 1},
+                {row + 1, col - 1}, {row + 1, col}, {row + 1, col + 1}};
     }
 
     @Override

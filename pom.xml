@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>GameOfLife</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
@@ -55,6 +55,21 @@
                     </argLine>
                 </configuration>
             </plugin>
+
+                <plugin>
+                    <!-- Build an executable JAR -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>game.GameOfLife</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+
         </plugins>
     </build>
 </project>

@@ -1,8 +1,9 @@
 package game;
+
 class AliveRule {
-    private int overPopulated;
-    private int minimumNeighbours;
-    private int neighboursRequiredForDeadCellToBeBorn;
+    private final int overPopulated;
+    private final int minimumNeighbours;
+    private final int neighboursRequiredForDeadCellToBeBorn;
 
     AliveRule(int minimumNeighbours, int overPopulated, int neighboursRequiredForDeadCellToBeBorn) {
         this.minimumNeighbours = minimumNeighbours;

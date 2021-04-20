@@ -33,4 +33,5 @@ public class AliveRuleTest {
         assertTrue( aliveRule.isAlive(true, 2));
         assertTrue( aliveRule.isAlive(true, 3));
     }
+
 }

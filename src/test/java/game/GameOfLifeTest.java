@@ -1,6 +1,5 @@
 package game;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,13 +8,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GameTest {
-    private Game game ;
+public class GameOfLifeTest {
+    private GameOfLife gameOfLife;
 
     @BeforeEach
     public void setup(){
-        game = new Game(25, 25);
-        game.seedGame(new int[][]{{11,12},{12,13},{13,11},{13,12},{13,13}});
+        gameOfLife = new GameOfLife.GameOfLifeBuilder()
+                .withBoardSize(25,25)
+                .withPattern(new int[][]{{11, 12}, {12, 13}, {13, 11}, {13, 12}, {13, 13}})
+                .withRule(new AliveRule(2, 4, 3))
+                .build();
     }
 
     @Test
@@ -33,7 +35,7 @@ public class GameTest {
             expectedCell.setAlive(true);
         }
 
-        List<Cell> livingCellsAfterFourGenerations = game.tick(4);
+        List<Cell> livingCellsAfterFourGenerations = gameOfLife.tick(4);
 
         assertEquals(5, livingCellsAfterFourGenerations.size());
         assertEquals(expectedGliderPosition, livingCellsAfterFourGenerations);
@@ -41,12 +43,11 @@ public class GameTest {
 
     @Test
     public void gliderPattern_newCellsAreBorn() {
-        List<Cell> livingCells = game.tick();
+        List<Cell> livingCells = gameOfLife.tick(1);
         assertEquals(5, livingCells.size());
-
         //new cells born
-        assertArrayEquals( new int[]{12,11},livingCells.get(0).getPos());
-        assertArrayEquals( new int[]{14,12},livingCells.get(4).getPos());
+        assertEquals(new Cell(12,11).setAlive(true), livingCells.get(0));
+        assertEquals( new Cell(14,12).setAlive(true), livingCells.get(4));
     }
 
     @Test
@@ -58,12 +59,11 @@ public class GameTest {
                 new Cell(24,23),
                 new Cell(24,24)});
 
-        //expected glidergit st alive state
         for(Cell expectedCell: expectedGliderPosition){
             expectedCell.setAlive(true);
         }
 
-        List<Cell> livingCells = game.tick(numberOfTicksBeforeItRepeatsAtEdge);
+        List<Cell> livingCells = gameOfLife.tick(numberOfTicksBeforeItRepeatsAtEdge);
 
         assertEquals(4, livingCells.size());
         assertEquals(expectedGliderPosition, livingCells);

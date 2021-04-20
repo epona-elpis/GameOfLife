@@ -15,7 +15,7 @@ public class GameOfLife {
         for (int i = 1; i <= ticks; i++) {
             board.incrementACellsLivingNeighbourCount();
             board.createNextGeneration(aliveRule);
-            System.out.print("\n generation" +i);
+            System.out.print("\n generation" +i +"\n");
             board.printState();
         }
         return board.getState();

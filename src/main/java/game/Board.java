@@ -52,8 +52,9 @@ class Board {
 
     void printState() {
         Arrays.stream(board).forEach((row) -> {
-            System.out.println();
+            System.out.print("|");
             Arrays.stream(row).forEach((col) -> System.out.print(col));
+            System.out.println("|");
         });
     }
 

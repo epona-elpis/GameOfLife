@@ -16,7 +16,7 @@ public class GameOfLifeTest {
         gameOfLife = new GameOfLife.GameOfLifeBuilder()
                 .withBoardSize(25,25)
                 .withPattern(new int[][]{{11, 12}, {12, 13}, {13, 11}, {13, 12}, {13, 13}})
-                .withRule(new AliveRule(2, 4, 3))
+                .withRule(new AliveRule())
                 .build();
     }
 

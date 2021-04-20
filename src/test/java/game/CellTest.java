@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CellTest {
 
-    private AliveRule aliveRule = new AliveRule(2, 4, 3);
+    private AliveRule aliveRule = new AliveRule();
 
     @Test
     public void underpopulatedCellDies_noNeighbours(){
